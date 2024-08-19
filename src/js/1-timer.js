@@ -3,7 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 let chosenDate;
 let difference;
 const startButton = document.querySelector('#startButton');
-
+const picker = document.querySelector('#datetime-picker');
 startButton.disabled = true;
 const options = {
   enableTime: true,
