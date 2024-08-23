@@ -1,5 +1,8 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 let chosenDate;
 let difference;
 const startButton = document.querySelector('#startButton');
@@ -16,7 +19,30 @@ const options = {
     chosenDate = selectedDates[0].getTime();
 
     if (chosenDate < dateNow) {
-      alert('Please choose a date in the future');
+      iziToast.error({
+        title: '',
+        message: 'Please choose a date in the future',
+        position: 'topRight',
+        timeout: 0,
+        iconUrl: '../img/bi_x-octagon.svg',
+        backgroundColor: '#EF4040',
+        messageColor: '#FFFFFF',
+        close: true,
+        onOpening: function (instance, toast) {
+          var closeButton = toast.querySelector('.iziToast-close');
+          closeButton.style.backgroundColor = 'transparent'; // Make the background transparent
+          closeButton.style.backgroundImage = "url('../img/bi_x-lg.svg')"; // Use your custom image
+          closeButton.style.backgroundSize = 'contain'; // Make sure the image scales properly
+          //closeButton.style.backgroundRepeat = 'no-repeat'; // Prevent the image from repeating
+          //closeButton.style.backgroundPosition = 'center'; // Center the image
+          closeButton.style.width = '16px'; // Adjust the size as needed
+          closeButton.style.height = '16px'; // Adjust the size as needed
+
+          closeButton.style.color = 'transparent'; // Hide the default "X"
+          closeButton.style.margin = '18px';
+        },
+      });
+
       startButton.disabled = true;
     } else {
       difference = chosenDate - dateNow;
