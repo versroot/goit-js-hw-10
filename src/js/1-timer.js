@@ -8,6 +8,7 @@ let difference;
 const startButton = document.querySelector('#startButton');
 const picker = document.querySelector('#datetime-picker');
 startButton.disabled = true;
+picker.disabled = false;
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -46,7 +47,7 @@ const options = {
       startButton.disabled = true;
     } else {
       difference = chosenDate - dateNow;
-      console.log(difference);
+
       startButton.disabled = false;
     }
   },
@@ -84,16 +85,22 @@ function buttonPressed() {
   const hoursElement = document.querySelector('[data-hours]');
   const minutesElement = document.querySelector('[data-minutes]');
   const secondsElement = document.querySelector('[data-seconds]');
+  picker.disabled = true;
   if (difference > 999) {
     let convertedDate = convertMs(difference);
 
-    daysElement.textContent = convertedDate.days;
-    hoursElement.textContent = convertedDate.hours;
-    minutesElement.textContent = convertedDate.minutes;
-    secondsElement.textContent = convertedDate.seconds;
+    daysElement.textContent = addLeadingZero(convertedDate.days);
+    hoursElement.textContent = addLeadingZero(convertedDate.hours);
+    minutesElement.textContent = addLeadingZero(convertedDate.minutes);
+    secondsElement.textContent = addLeadingZero(convertedDate.seconds);
     difference -= 1000;
   } else {
     secondsElement.textContent = '00';
     clearInterval(intervalId);
+    picker.disabled = false;
   }
+}
+
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
 }
