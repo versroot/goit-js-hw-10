@@ -23,7 +23,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
-#startButton {
+#startButton,
+#createButton {
   background-color: #4e75ff;
   width: 75px;
   height: 40px;
@@ -36,7 +37,12 @@
   border-radius: 8px;
 }
 
-#startButton:hover {
+#createButton {
+  width: 360px;
+}
+
+#startButton:hover,
+#createButton:hover {
   background-color: #6c8cff;
 }
 
@@ -44,7 +50,8 @@
   background-color: #cfcfcf;
 }
 
-#datetime-picker {
+#datetime-picker,
+#delay {
   width: 272px;
   height: 40px;
 
@@ -52,15 +59,22 @@
   text-align: left;
   padding-left: 16px;
   border: 1px solid #808080;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
-#datetime-picker:hover {
+#delay {
+  width: 360px;
+}
+
+#datetime-picker:hover,
+#delay:hover {
   border: 1px solid #000000;
 }
 
-#datetime-picker:active {
+#datetime-picker:focus,
+#delay:focus {
   border: 1px solid #4e75ff;
+  outline: none;
 }
 
 #datetime-picker:disabled {
@@ -93,4 +107,52 @@
 
 .label {
   font-size: 16px;
+}
+.flatpickr-day.today {
+  border-color: #ffffff !important;
+}
+.flatpickr-day.selected.today {
+  background: #ffffff !important;
+  border-color: #4e75ff !important;
+  color: black !important;
+}
+
+.flatpickr-day.selected {
+  background: #4e75ff !important;
+  border: none !important;
+}
+
+.flatpickr-day:hover {
+  background: #c1c1c1 !important;
+  border: none !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  gap: 24px;
+}
+
+#decision {
+  width: 360px;
+  height: 64px;
+  top: 14px;
+  gap: 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-around;
+}
+#decision:hover,
+#decision:focus {
+  border-color: #000000;
+}
+
+#delayform {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

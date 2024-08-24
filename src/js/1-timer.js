@@ -31,15 +31,13 @@ const options = {
         close: true,
         onOpening: function (instance, toast) {
           var closeButton = toast.querySelector('.iziToast-close');
-          closeButton.style.backgroundColor = 'transparent'; // Make the background transparent
-          closeButton.style.backgroundImage = "url('../img/bi_x-lg.svg')"; // Use your custom image
-          closeButton.style.backgroundSize = 'contain'; // Make sure the image scales properly
-          //closeButton.style.backgroundRepeat = 'no-repeat'; // Prevent the image from repeating
-          //closeButton.style.backgroundPosition = 'center'; // Center the image
-          closeButton.style.width = '16px'; // Adjust the size as needed
-          closeButton.style.height = '16px'; // Adjust the size as needed
+          closeButton.style.backgroundColor = 'transparent'; //
+          closeButton.style.backgroundImage = "url('../img/bi_x-lg.svg')";
+          closeButton.style.backgroundSize = 'contain';
+          closeButton.style.width = '16px';
+          closeButton.style.height = '16px';
 
-          closeButton.style.color = 'transparent'; // Hide the default "X"
+          closeButton.style.color = 'transparent';
           closeButton.style.margin = '18px';
         },
       });
