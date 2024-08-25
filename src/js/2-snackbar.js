@@ -1,58 +1,63 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-let delay;
-let option;
-let isSuccess = true;
+const fullfilled = document.getElementById('fulfilled');
+const rejected = document.getElementById('rejected');
+const decision = document.getElementById('decision');
 const createButton = document.getElementById('createButton');
+
+fullfilled.addEventListener('change', event => {
+  if (event.target.checked) {
+    decision.style.borderColor = '#000000';
+  }
+});
+rejected.addEventListener('change', event => {
+  if (event.target.checked) {
+    decision.style.borderColor = '#000000';
+  }
+});
 
 createButton.addEventListener('click', event => {
   event.preventDefault();
 
-  delay = document.getElementById('delay').value;
-  option = document.querySelector('input[name="state"]:checked').value;
-  if (option === 'rejected') {
-    isSuccess = false;
-  }
+  const delay = document.getElementById('delay').value;
+  const option = document.querySelector('input[name="state"]:checked').value;
+  const isSuccess = option === 'fulfilled';
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (isSuccess) {
-        resolve(
-          iziToast.success({
-            title: 'OK',
-            titleColor: '#FFFFFF',
-            message: `fullfilled promise in ${delay} ms`,
-            iconUrl: '../img/bi_check2-circle.svg',
-            backgroundColor: '#59A10D',
-            messageColor: '#FFFFFF',
-            close: true,
-            onOpening: closeX,
-          })
-        );
+        resolve();
       } else {
-        reject(
-          iziToast.error({
-            title: 'Error',
-            titleColor: '#FFFFFF',
-            message: `rejected promise in ${delay} ms`,
-            iconUrl: '../img/bi_check2-circle.svg',
-            backgroundColor: '#EF4040',
-            messageColor: '#FFFFFF',
-            close: true,
-
-            onOpening: closeX,
-          })
-        );
+        reject();
       }
     }, delay);
   });
 
   promise
-    .then(value => {
-      value;
+    .then(() => {
+      iziToast.success({
+        title: 'OK',
+        titleColor: '#FFFFFF',
+        message: `fullfilled promise in ${delay} ms`,
+        iconUrl: '../img/bi_check2-circle.svg',
+        backgroundColor: '#59A10D',
+        messageColor: '#FFFFFF',
+        close: true,
+        onOpening: closeX,
+      });
     })
-    .catch(error => {
-      error;
+    .catch(() => {
+      iziToast.error({
+        title: 'Error',
+        titleColor: '#FFFFFF',
+        message: `rejected promise in ${delay} ms`,
+        iconUrl: '../img/bi_check2-circle.svg',
+        backgroundColor: '#EF4040',
+        messageColor: '#FFFFFF',
+        close: true,
+
+        onOpening: closeX,
+      });
     });
 });
 
